@@ -39,6 +39,7 @@ def centric_node_detection(adj_matrix, proportion=0.1):
     :param adj_matrix: adjacent matrix of the graph
     :return: a list of nodes (index) that located at the edge of the graph
     """
+    # TODO: Similar idea
     return
 
 

@@ -2,7 +2,7 @@ import random
 import csv
 # random.seed(seed)
 import numpy as np
-
+import os
 
 def initialize(node_num, max_degree):
     degree_dict = {}  # id , (current_degree, max_degree)
@@ -49,11 +49,11 @@ def store_graph(adj_matrix,file_name):
             for col in range(len(adj_matrix[0])):
                 if row <= col and adj_matrix[row][col] > 0:
                     writer.writerow([row,col,adj_matrix[row][col]])
-def read_graph(file_name):
+def read_graph(file_name,dir_name = 'graph'):
     num = file_name.split('_')[0]
 
     adj_matrix = np.zeros((int(num),int(num)))
-    f = open(file_name)
+    f = open(os.path.join(dir_name,file_name))
     csv_reader = csv.reader(f)
     next(csv_reader)
     sparse_matrix = []

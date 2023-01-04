@@ -99,17 +99,7 @@ def feature_matrix_extraction(adj_matrix, boundary_nodes, gt=False):
 
 
 
-def save_obj(obj, name):
-    with open(name + '.pkl', 'wb') as f:
-        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
-
-
-def load_obj(name):
-    with open(name + '.pkl', 'rb') as f:
-        return pickle.load(f)
-
-
-def pickle_training_data(root_dir=READ_PATH, target_path=STORING_PATH):
+def pickle_ordering_data(root_dir=READ_PATH, target_path=STORING_PATH):
     """
     It saves training data which will be used later on the disk
     """
@@ -125,6 +115,26 @@ def pickle_training_data(root_dir=READ_PATH, target_path=STORING_PATH):
             # check_for_maintenance
             reload_dict = np.load(os.path.join(target_path, file.split('.')[0]+'.npy'), allow_pickle=True).item()
             assert reload_dict == feature_dict
+    return
+def pickle_training_data(root_dir=READ_PATH, target_path=STORING_PATH):
+    """
+    It saves training data which will be used later on the disk
+    """
+    # TODO: Save the training dict in Lower_Bound_a_star_utils onto the disk
+    for root, dirs, files in os.walk(root_dir):
+        for file in files:
+            #csv_path = os.path.join(READ_PATH, file)
+            #print(csv_path)
+            adj, spa = read_graph(file)
+            feature_dict = feature_matrix_extraction(adj_matrix=adj,
+                                                           boundary_nodes=boundary_node_detection(adj))
+            np.save(os.path.join(target_path, file.split('.')[0]+'.npy'), feature_dict)
+            #save_obj(feature_dict, os.path.join(target_path, file.split('.')[0]))
+            # check_for_maintenance
+            reload_dict = np.load(os.path.join(target_path, file.split('.')[0]+'.npy'), allow_pickle=True).item()
+            assert reload_dict == feature_dict
+
+
 if __name__ == '__main__':
     adj, spa = read_graph('10_6_0.csv')
     print(adj)
@@ -135,4 +145,4 @@ if __name__ == '__main__':
     print(boundary_node_detection(adj))
     print(centric_node_detection(adj))
     print(feature_matrix_extraction(adj_matrix=adj, boundary_nodes=boundary_node_detection(adj)))
-    pickle_training_data()
+    pickle_ordering_data()

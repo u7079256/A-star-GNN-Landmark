@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3005a625-0843-43fd-a7cc-7224d268f43a" name="变更" comment="simple implementation of Dijkstra's Algorithm">
-      <change afterPath="$PROJECT_DIR$/Lower_bound_a_star_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a_star_algo.py" beforeDir="false" afterPath="$PROJECT_DIR$/dijkstra_tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lower_bound_a_star_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lower_bound_a_star_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +240,7 @@
       <workItem from="1670997291225" duration="329000" />
       <workItem from="1670998569371" duration="4269000" />
       <workItem from="1671580546730" duration="17699000" />
-      <workItem from="1672786612247" duration="6307000" />
+      <workItem from="1672786612247" duration="9204000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1670997518477</created>
@@ -274,7 +270,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671714137549</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="simple implementation of Dijkstra's Algorithm">
+      <created>1672813715635</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672813715635</updated>
+    </task>
+    <task id="LOCAL-00006" summary="simple implementation of Dijkstra's Algorithm">
+      <created>1672813776695</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1672813776695</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,6 +304,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial" />
     <MESSAGE value="extract feature dict" />
+    <MESSAGE value="Fit the lower bound calculation algorithm.&#10;Implement feature storing function for further use" />
     <MESSAGE value="simple implementation of Dijkstra's Algorithm" />
     <option name="LAST_COMMIT_MESSAGE" value="simple implementation of Dijkstra's Algorithm" />
   </component>

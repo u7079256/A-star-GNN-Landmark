@@ -3,8 +3,10 @@ from graph_generate import read_graph
 import dijkstra_tools
 import pickle
 import os
+import Lower_bound_a_star_utils
 STORING_PATH = 'distance_data'
 READ_PATH = 'graph'
+SCORING_PATH = 'landmark_scoring'
 
 def boundary_node_detection(adj_matrix, proportion=0.1):
     """
@@ -99,22 +101,19 @@ def feature_matrix_extraction(adj_matrix, boundary_nodes, gt=False):
 
 
 
-def pickle_ordering_data(root_dir=READ_PATH, target_path=STORING_PATH):
+def pickle_ordering_data(root_dir=STORING_PATH, target_path=SCORING_PATH, is_avg = False):
     """
     It saves training data which will be used later on the disk
     """
     for root, dirs, files in os.walk(root_dir):
         for file in files:
-            #csv_path = os.path.join(READ_PATH, file)
-            #print(csv_path)
-            adj, spa = read_graph(file)
-            feature_dict = feature_matrix_extraction(adj_matrix=adj,
-                                                           boundary_nodes=boundary_node_detection(adj))
-            np.save(os.path.join(target_path, file.split('.')[0]+'.npy'), feature_dict)
-            #save_obj(feature_dict, os.path.join(target_path, file.split('.')[0]))
+            feature = np.load(os.path.join(root_dir, file.split('.')[0] + '.npy'), allow_pickle=True).item()
+            landmark_score = Lower_bound_a_star_utils.scoring_with_ordering(feature) if not is_avg else \
+                Lower_bound_a_star_utils.scoring_with_avg(feature)
+            np.save(os.path.join(target_path, file.split('.')[0] + 'score.npy'), landmark_score)
             # check_for_maintenance
-            reload_dict = np.load(os.path.join(target_path, file.split('.')[0]+'.npy'), allow_pickle=True).item()
-            assert reload_dict == feature_dict
+            reload_dict = np.load(os.path.join(target_path, file.split('.')[0]+'score.npy'), allow_pickle=True).item()
+            assert reload_dict == landmark_score
     return
 def pickle_training_data(root_dir=READ_PATH, target_path=STORING_PATH):
     """
@@ -137,12 +136,14 @@ def pickle_training_data(root_dir=READ_PATH, target_path=STORING_PATH):
 
 if __name__ == '__main__':
     adj, spa = read_graph('10_6_0.csv')
-    print(adj)
+    #print(adj)
     count = 0
     for ele in spa:
-        print('index', count, ':', ele)
+        #print('index', count, ':', ele)
         count += 1
-    print(boundary_node_detection(adj))
-    print(centric_node_detection(adj))
-    print(feature_matrix_extraction(adj_matrix=adj, boundary_nodes=boundary_node_detection(adj)))
-    pickle_ordering_data()
+    #print(boundary_node_detection(adj))
+    #print(centric_node_detection(adj))
+    #print(feature_matrix_extraction(adj_matrix=adj, boundary_nodes=boundary_node_detection(adj)))
+    #pickle_training_data()
+    #reload_dict = np.load(os.path.join(target_path, file.split('.')[0] + '.npy'), allow_pickle=True).item()
+    pickle_ordering_data(is_avg=True)

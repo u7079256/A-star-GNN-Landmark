@@ -11,13 +11,13 @@ def scoring_with_avg(feature_dict):
     :return: A dict, {landmark1:score1.....}
     """
     landmark_score = {}
-    for key, value in feature_dict:
-        for landmark, distance in value:
+    for key, value in feature_dict.items():
+        for landmark, distance in value.items():
             if landmark not in landmark_score:
                 landmark_score[landmark] = distance
             else:
                 landmark_score[landmark] += distance
-    for key, value in landmark_score:
+    for key, value in landmark_score.items():
         landmark_score[key] = - math.tanh(value) + 1
     return landmark_score
 
@@ -33,8 +33,12 @@ def scoring_with_ordering(feature_dict):
     :return: A dict, {landmark1:score1.....} n >= score_n >= 1
     """
     landmark_score = {}
-    for key, value in feature_dict:
-        distance_list = sorted(value.items(), key=lambda x: x[1], reverse=True)
+    #print("=============================")
+    #print(feature_dict)
+    #print(":+++++++++++++++++++++++++++++++")
+    for key, value_dict in feature_dict.items():
+        #print(value_dict)
+        distance_list = sorted(value_dict.items(), key=lambda x: x[1], reverse=True)
         score_default = 0
         for pairs in distance_list:
             if pairs[0] not in landmark_score:
@@ -43,6 +47,6 @@ def scoring_with_ordering(feature_dict):
             else:
                 landmark_score[pairs[0]] += score_default
                 score_default += 1
-    for key, value in landmark_score:
+    for key, value in landmark_score.items():
         landmark_score[key] = - math.tanh(value) + 1
     return landmark_score

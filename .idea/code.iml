@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/graph" />
       <excludeFolder url="file://$MODULE_DIR$/distance_data" />
+      <excludeFolder url="file://$MODULE_DIR$/landmark_scoring" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

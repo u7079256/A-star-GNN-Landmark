@@ -1,12 +1,15 @@
-import numpy as np
-from graph_generate import read_graph
-import dijkstra_tools
-import pickle
 import os
+
+import numpy as np
+
 import Lower_bound_a_star_utils
+import dijkstra_tools
+from graph_generate import read_graph
+
 STORING_PATH = 'distance_data'
 READ_PATH = 'graph'
 SCORING_PATH = 'landmark_scoring'
+
 
 def boundary_node_detection(adj_matrix, proportion=0.1):
     """
@@ -81,16 +84,16 @@ def feature_matrix_extraction(adj_matrix, boundary_nodes, gt=False):
     distance_dict = {}
     for edge_node in boundary_nodes:
         distance_dict[edge_node] = dijkstra_tools.dijkstra_one_to_all(adj_matrix, edge_node)
-    #print(distance_dict)
-    #print(distance_dict[0][1])
+    # print(distance_dict)
+    # print(distance_dict[0][1])
     feature_dict = {}
     for ele_from in potential_pairs:
         for ele_to in potential_pairs:
             if ele_to != ele_from:
                 feature_list_dict = {}
                 for landmark in boundary_nodes:
-                    #print(distance_dict[landmark][ele_from])
-                    #print(distance_dict[landmark][ele_to])
+                    # print(distance_dict[landmark][ele_from])
+                    # print(distance_dict[landmark][ele_to])
                     feature_list_dict[landmark] = abs(distance_dict[landmark][ele_from] -
                                                       distance_dict[landmark][ele_to])
                     # abs(adj_matrix[ele_from][landmark]-adj_matrix[ele_to][landmark])
@@ -99,9 +102,7 @@ def feature_matrix_extraction(adj_matrix, boundary_nodes, gt=False):
     return feature_dict
 
 
-
-
-def pickle_ordering_data(root_dir=STORING_PATH, target_path=SCORING_PATH, is_avg = False):
+def pickle_ordering_data(root_dir=STORING_PATH, target_path=SCORING_PATH, is_avg=False):
     """
     It saves training data which will be used later on the disk
     """
@@ -112,38 +113,39 @@ def pickle_ordering_data(root_dir=STORING_PATH, target_path=SCORING_PATH, is_avg
                 Lower_bound_a_star_utils.scoring_with_avg(feature)
             np.save(os.path.join(target_path, file.split('.')[0] + 'score.npy'), landmark_score)
             # check_for_maintenance
-            reload_dict = np.load(os.path.join(target_path, file.split('.')[0]+'score.npy'), allow_pickle=True).item()
+            reload_dict = np.load(os.path.join(target_path, file.split('.')[0] + 'score.npy'), allow_pickle=True).item()
             assert reload_dict == landmark_score
     return
+
+
 def pickle_training_data(root_dir=READ_PATH, target_path=STORING_PATH):
     """
     It saves training data which will be used later on the disk
     """
-    # TODO: Save the training dict in Lower_Bound_a_star_utils onto the disk
     for root, dirs, files in os.walk(root_dir):
         for file in files:
-            #csv_path = os.path.join(READ_PATH, file)
-            #print(csv_path)
+            # csv_path = os.path.join(READ_PATH, file)
+            # print(csv_path)
             adj, spa = read_graph(file)
             feature_dict = feature_matrix_extraction(adj_matrix=adj,
-                                                           boundary_nodes=boundary_node_detection(adj))
-            np.save(os.path.join(target_path, file.split('.')[0]+'.npy'), feature_dict)
-            #save_obj(feature_dict, os.path.join(target_path, file.split('.')[0]))
+                                                     boundary_nodes=boundary_node_detection(adj))
+            np.save(os.path.join(target_path, file.split('.')[0] + '.npy'), feature_dict)
+            # save_obj(feature_dict, os.path.join(target_path, file.split('.')[0]))
             # check_for_maintenance
-            reload_dict = np.load(os.path.join(target_path, file.split('.')[0]+'.npy'), allow_pickle=True).item()
+            reload_dict = np.load(os.path.join(target_path, file.split('.')[0] + '.npy'), allow_pickle=True).item()
             assert reload_dict == feature_dict
 
 
 if __name__ == '__main__':
     adj, spa = read_graph('10_6_0.csv')
-    #print(adj)
+    # print(adj)
     count = 0
     for ele in spa:
-        #print('index', count, ':', ele)
+        # print('index', count, ':', ele)
         count += 1
-    #print(boundary_node_detection(adj))
-    #print(centric_node_detection(adj))
-    #print(feature_matrix_extraction(adj_matrix=adj, boundary_nodes=boundary_node_detection(adj)))
-    #pickle_training_data()
-    #reload_dict = np.load(os.path.join(target_path, file.split('.')[0] + '.npy'), allow_pickle=True).item()
+    # print(boundary_node_detection(adj))
+    # print(centric_node_detection(adj))
+    # print(feature_matrix_extraction(adj_matrix=adj, boundary_nodes=boundary_node_detection(adj)))
+    # pickle_training_data()
+    # reload_dict = np.load(os.path.join(target_path, file.split('.')[0] + '.npy'), allow_pickle=True).item()
     pickle_ordering_data(is_avg=True)

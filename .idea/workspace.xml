@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3005a625-0843-43fd-a7cc-7224d268f43a" name="变更" comment="A-star baseline, with todos">
+    <list default="true" id="3005a625-0843-43fd-a7cc-7224d268f43a" name="变更" comment="A-star baseline, finish landmark choosing logic">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/baseline_random_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/baseline_random_sample.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/di.txt" beforeDir="false" afterPath="$PROJECT_DIR$/di.txt" afterDir="false" />
@@ -55,7 +56,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.dijkstra_tools (1)">
+  <component name="RunManager" selected="Python.baseline_random_sample">
     <configuration name="Lower_bound_a_star_utils (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -214,8 +215,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.dijkstra_tools (1)" />
         <item itemvalue="Python.baseline_random_sample" />
+        <item itemvalue="Python.dijkstra_tools (1)" />
         <item itemvalue="Python.utils (1)" />
         <item itemvalue="Python.Lower_bound_a_star_utils (1)" />
         <item itemvalue="Python.Lower_bound_a_star_utils" />
@@ -238,7 +239,8 @@
       <workItem from="1671580546730" duration="17699000" />
       <workItem from="1672786612247" duration="12384000" />
       <workItem from="1672831147465" duration="1798000" />
-      <workItem from="1672894622127" duration="5424000" />
+      <workItem from="1672894622127" duration="7935000" />
+      <workItem from="1672968006735" duration="3184000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1670997518477</created>
@@ -310,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672897010715</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="A-star baseline, finish landmark choosing logic">
+      <created>1672914626948</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1672914626948</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +345,8 @@
     <MESSAGE value="scoring functions" />
     <MESSAGE value="scoring functions bug fix" />
     <MESSAGE value="A-star baseline, with todos" />
-    <option name="LAST_COMMIT_MESSAGE" value="A-star baseline, with todos" />
+    <MESSAGE value="A-star baseline, finish landmark choosing logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="A-star baseline, finish landmark choosing logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -356,12 +366,23 @@
           <line>122</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/baseline_random_sample.py</url>
+          <line>102</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/baseline_random_sample.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dijkstra_tools_py$utils__1_.coverage" NAME="utils (1) 覆盖结果" MODIFIED="1672832018650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$graph_generate__1_.coverage" NAME="graph_generate (1) 覆盖结果" MODIFIED="1670562529147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Lower_bound_a_star_utils_py$baseline_random_sample.coverage" NAME="baseline_random_sample 覆盖结果" MODIFIED="1672970126118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$trival_algo.coverage" NAME="trival_algo 覆盖结果" MODIFIED="1670906689804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/trival_algo_py$trival_algo.coverage" NAME="trival_algo 覆盖结果" MODIFIED="1670994900548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/utils_py$a_star_algo.coverage" NAME="a_star_algo 覆盖结果" MODIFIED="1671678206214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

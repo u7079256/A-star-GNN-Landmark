@@ -19,7 +19,7 @@ def dijkstra_one_to_one(adj_matrix, from_node, to_node):
         for i in range(len(connection_status)):
             if connection_status[i] != 0 and distance_stack[i] > distance_stack[next_node] + connection_status[i]:
                 distance_stack[i] = distance_stack[next_node] + connection_status[i]
-
+    print(close_set)
     return distance_stack[to_node]
 
 
@@ -48,7 +48,7 @@ def minimum_node(distance_stack, minimum_dist, close_set):
     for i in range(len(distance_stack)):
         if distance_stack[i] != np.inf and close_set[i] == 0:
             with open('di.txt', 'a') as f:
-                f.writelines('searching at ' + str(i)+'\n');
+                f.writelines('searching at ' + str(i)+'\n')
             if distance_stack[i] < minimum_dist:
                 minimum_dist = distance_stack[i]
                 next_node = i
@@ -67,15 +67,15 @@ if __name__ == '__main__':
          [8, 11, 0, 0, 0, 0, 1, 0, 7],
          [0, 0, 2, 0, 0, 0, 6, 7, 0]
          ]
-    #print(dijkstra_one_to_one(g, 0, 1))
-    #print(dijkstra_one_to_one(g, 0, 2))
-    #print(dijkstra_one_to_one(g, 0, 3))
-    #print(dijkstra_one_to_one(g, 0, 4))
-    #print(dijkstra_one_to_one(g, 0, 5))
-    #print(dijkstra_one_to_one(g, 0, 6))
-    #print(dijkstra_one_to_one(g, 0, 7))
-    #print(dijkstra_one_to_one(g, 0, 8))
-    print(dijkstra_one_to_all(g, 3))
-    print(dijkstra_one_to_all(g, 0))
-    print(dijkstra_one_to_all(g, 4))
+    print(dijkstra_one_to_one(g, 0, 1))
+    print(dijkstra_one_to_one(g, 0, 2))
+    print(dijkstra_one_to_one(g, 0, 3))
+    print(dijkstra_one_to_one(g, 0, 4))
+    print(dijkstra_one_to_one(g, 0, 5))
+    print(dijkstra_one_to_one(g, 0, 6))
+    print(dijkstra_one_to_one(g, 0, 7))
+    print(dijkstra_one_to_one(g, 0, 8))
+    #print(dijkstra_one_to_all(g, 3))
+    #print(dijkstra_one_to_all(g, 0))
+    #print(dijkstra_one_to_all(g, 4))
     #print(dijkstra_one_to_all(g, 4))

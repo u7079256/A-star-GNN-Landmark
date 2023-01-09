@@ -4,21 +4,26 @@ import numpy as np
 
 def scoring_with_avg(feature_dict):
     """
-    Calculating the avgerage distance between specific landmark to all other nodes, then passing through sigmoid
-    function to resize scale. The lower the avergae distance, the higher the output value
+    Calculating the average distance between specific landmark to all other nodes, then passing through sigmoid
+    function to resize scale. The lower the average distance, the higher the output value
     :param feature_dict: This dictionary is of the following format: {(source_node,target_node):
     {landmark1:estimated_distance, landmark2:estimated_distance2....}}
     :return: A dict, {landmark1:score1.....}
     """
     landmark_score = {}
+    # print(feature_dict)
     for key, value in feature_dict.items():
         for landmark, distance in value.items():
             if landmark not in landmark_score:
                 landmark_score[landmark] = distance
             else:
                 landmark_score[landmark] += distance
-    for key, value in landmark_score.items():
-        landmark_score[key] = - math.tanh(value) + 1
+    #landmark_score = sorted(landmark_score.items(), key=lambda x: x[1], reverse=True)
+    #print(landmark_score)
+    #print('k', k)
+    #for key, value in landmark_score.items():
+    #    landmark_score[key] = - math.tanh(value) + 1
+    #print(landmark_score)
     return landmark_score
 
 
@@ -33,11 +38,11 @@ def scoring_with_ordering(feature_dict):
     :return: A dict, {landmark1:score1.....} n >= score_n >= 1
     """
     landmark_score = {}
-    #print("=============================")
-    #print(feature_dict)
-    #print(":+++++++++++++++++++++++++++++++")
+    # print("=============================")
+    # print(feature_dict)
+    # print(":+++++++++++++++++++++++++++++++")
     for key, value_dict in feature_dict.items():
-        #print(value_dict)
+        # print(value_dict)
         distance_list = sorted(value_dict.items(), key=lambda x: x[1], reverse=True)
         score_default = 0
         for pairs in distance_list:
@@ -47,6 +52,9 @@ def scoring_with_ordering(feature_dict):
             else:
                 landmark_score[pairs[0]] += score_default
                 score_default += 1
-    for key, value in landmark_score.items():
-        landmark_score[key] = - math.tanh(value) + 1
+    #print(landmark_score)
+    #for key, value in landmark_score.items():
+    #    landmark_score[key] = - math.tanh(value) + 1
+    #print(landmark_score)
+    #landmark_score = sorted(landmark_score.items(), key=lambda x: x[1], reverse=True)
     return landmark_score

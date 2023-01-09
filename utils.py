@@ -11,7 +11,7 @@ READ_PATH = 'graph'
 SCORING_PATH = 'landmark_scoring'
 
 
-def boundary_node_detection(adj_matrix, proportion=0.1):
+def boundary_node_detection(adj_matrix, proportion=0.2):
     """
     Boundary of graph should have relatively low degree than nodes at the center of the
     graph. Therefore, nodes which number of degree stand at the lower 10% will be regarded
@@ -108,6 +108,7 @@ def pickle_ordering_data(root_dir=STORING_PATH, target_path=SCORING_PATH, is_avg
     """
     for root, dirs, files in os.walk(root_dir):
         for file in files:
+            print(file)
             feature = np.load(os.path.join(root_dir, file.split('.')[0] + '.npy'), allow_pickle=True).item()
             landmark_score = Lower_bound_a_star_utils.scoring_with_ordering(feature) if not is_avg else \
                 Lower_bound_a_star_utils.scoring_with_avg(feature)
@@ -138,7 +139,8 @@ def pickle_training_data(root_dir=READ_PATH, target_path=STORING_PATH):
 
 if __name__ == '__main__':
     adj, spa = read_graph('10_6_0.csv')
-    # print(adj)
+    print(adj)
+    print(spa)
     count = 0
     for ele in spa:
         # print('index', count, ':', ele)
@@ -148,4 +150,8 @@ if __name__ == '__main__':
     # print(feature_matrix_extraction(adj_matrix=adj, boundary_nodes=boundary_node_detection(adj)))
     # pickle_training_data()
     # reload_dict = np.load(os.path.join(target_path, file.split('.')[0] + '.npy'), allow_pickle=True).item()
+    #pickle_training_data()
     pickle_ordering_data(is_avg=True)
+    pickle_ordering_data(is_avg=False)
+    test = np.load('landmark_scoring/80_54_5score.npy',allow_pickle=True)
+    print(test)

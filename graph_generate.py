@@ -49,7 +49,7 @@ def store_graph(adj_matrix,file_name):
             for col in range(len(adj_matrix[0])):
                 if row <= col and adj_matrix[row][col] > 0:
                     writer.writerow([row,col,adj_matrix[row][col]])
-def read_graph(file_name,dir_name = 'graph'):
+def read_graph(file_name,dir_name = 'raw_dir/graph'):
     num = file_name.split('_')[0]
 
     adj_matrix = np.zeros((int(num),int(num)))

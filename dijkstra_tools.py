@@ -47,8 +47,8 @@ def minimum_node(distance_stack, minimum_dist, close_set):
     next_node = -1
     for i in range(len(distance_stack)):
         if distance_stack[i] != np.inf and close_set[i] == 0:
-            with open('di.txt', 'a') as f:
-                f.writelines('searching at ' + str(i)+'\n')
+            #with open('di.txt', 'a') as f:
+            #    f.writelines('searching at ' + str(i)+'\n')
             if distance_stack[i] < minimum_dist:
                 minimum_dist = distance_stack[i]
                 next_node = i

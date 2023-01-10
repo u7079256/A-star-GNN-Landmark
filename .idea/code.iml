@@ -8,6 +8,8 @@
       <excludeFolder url="file://$MODULE_DIR$/raw_dir" />
       <excludeFolder url="file://$MODULE_DIR$/graphs" />
       <excludeFolder url="file://$MODULE_DIR$/data" />
+      <excludeFolder url="file://$MODULE_DIR$/testing" />
+      <excludeFolder url="file://$MODULE_DIR$/training" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

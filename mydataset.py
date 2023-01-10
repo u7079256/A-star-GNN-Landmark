@@ -91,11 +91,14 @@ class RoadNetworkDataset(Dataset):
             landmark_score = Lower_bound_a_star_utils.scoring_with_ordering(feature_dict)
             landmark_score = sorted(landmark_score.items(), key=lambda x: x[1], reverse=True)
             y = np.zeros(len(adj))
+
             cut_off_index = int(self.proportion * len(landmark_score))
+            #print('len', len(landmark_score),'cut',cut_off_index)
             for ele in landmark_score:
                 # label = 2 indicates good landmark, 1 ~ bad landmarks, 0 ~ normal node
                 if cut_off_index >= 0:
                     y[ele[0]] = 2
+                    cut_off_index -= 1
                 else:
                     y[ele[0]] = 1
             y = torch.tensor(y)
@@ -107,7 +110,7 @@ class RoadNetworkDataset(Dataset):
                 graph = self.pre_transform(graph)
             # print('the file', file)
             torch.save(graph,
-                       os.path.join(self.store_dir,
+                       os.path.join(self.processed_dir,
                                     f'data_{index}.pt'))
 
     def len(self) -> int:
@@ -117,13 +120,14 @@ class RoadNetworkDataset(Dataset):
         """ - Equivalent to __getitem__ in pytorch
         - Is not needed for PyG's InMemoryDataset
         """
-        print(os.path.join(self.store_dir,
-                           f'data_{idx}.pt'))
-        data = torch.load(os.path.join(self.store_dir,
+        #print(os.path.join(self.processed_dir,
+        #                   f'data_{idx}.pt'))
+        data = torch.load(os.path.join(self.processed_dir,
                                        f'data_{idx}.pt'))
         return data
 
 
 if __name__ == '__main__':
-    dataset = RoadNetworkDataset(root="data/")
-    sample = dataset.get(0)
+    #dataset = RoadNetworkDataset(root="data/",raw_dir='testing')
+    sample = torch.load(os.path.join('testing//processed',
+                                       f'data_1.pt'))

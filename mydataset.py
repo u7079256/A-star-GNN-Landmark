@@ -9,7 +9,7 @@ from tqdm import tqdm
 import Lower_bound_a_star_utils
 from graph_generate import read_graph
 from utils import feature_matrix_extraction, boundary_node_detection
-
+import torch_geometric.transforms as T
 
 class RoadNetworkDataset(Dataset):
     def __init__(self, root, raw_dir='graph', test=False, transform=None, pre_transform=None, proportion=0.5):
@@ -107,7 +107,8 @@ class RoadNetworkDataset(Dataset):
                 graph = self.pre_filter(graph)
 
             if self.pre_transform is not None:
-                graph = self.pre_transform(graph)
+                for ele in self.pre_transform:
+                    graph = ele(graph)
             # print('the file', file)
             torch.save(graph,
                        os.path.join(self.processed_dir,
@@ -128,6 +129,6 @@ class RoadNetworkDataset(Dataset):
 
 
 if __name__ == '__main__':
-    #dataset = RoadNetworkDataset(root="data/",raw_dir='testing')
+    dataset = RoadNetworkDataset(root="data/",raw_dir='testing',pre_transform=[T.OneHotDegree(max_degree=1000),T.NormalizeFeatures()])
     sample = torch.load(os.path.join('testing//processed',
                                        f'data_1.pt'))

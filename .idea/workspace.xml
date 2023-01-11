@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3005a625-0843-43fd-a7cc-7224d268f43a" name="变更" comment="fix potential bugs for len and get, implement processed function, it helps to prevent from re-processing">
-      <change afterPath="$PROJECT_DIR$/raw_data_train_test-split.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training.py" afterDir="false" />
+    <list default="true" id="3005a625-0843-43fd-a7cc-7224d268f43a" name="变更" comment="implement a naive training process, seems to be able to learn information from graphs. May need other tricks to stabilize the fluctuation of acc (&gt;=20 epoch, the acc fluctuates">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/di.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/graph/100_14_0.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/graph/100_14_10.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/graph/100_14_11.csv" beforeDir="false" />
@@ -3164,6 +3160,7 @@
       <change beforePath="$PROJECT_DIR$/graph/90_70_8.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/graph/90_70_9.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/mydataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/mydataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/training.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -3211,7 +3208,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.training">
+  <component name="RunManager" selected="Python.mydataset">
     <configuration name="GAT_demo_taste" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -3390,8 +3387,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.training" />
         <item itemvalue="Python.mydataset" />
+        <item itemvalue="Python.training" />
         <item itemvalue="Python.raw_data_train_test-split" />
         <item itemvalue="Python.utils (1)" />
         <item itemvalue="Python.Lower_bound_a_star_utils (1)" />
@@ -3420,7 +3417,7 @@
       <workItem from="1673281582401" duration="4226000" />
       <workItem from="1673313914134" duration="64000" />
       <workItem from="1673314003495" duration="210000" />
-      <workItem from="1673314233092" duration="12630000" />
+      <workItem from="1673314233092" duration="17034000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1670997518477</created>
@@ -3527,7 +3524,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673314247796</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="implement a naive training process, seems to be able to learn information from graphs. May need other tricks to stabilize the fluctuation of acc (&gt;=20 epoch, the acc fluctuates">
+      <created>1673329015448</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673329015448</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -3558,7 +3562,8 @@
     <MESSAGE value="remove one todo, nothing new" />
     <MESSAGE value="add self implemented dataset class, which could be used for training.&#10;Note that the transform operation has not been implemented.&#10;Only a naive implementation overall" />
     <MESSAGE value="fix potential bugs for len and get, implement processed function, it helps to prevent from re-processing" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix potential bugs for len and get, implement processed function, it helps to prevent from re-processing" />
+    <MESSAGE value="implement a naive training process, seems to be able to learn information from graphs. May need other tricks to stabilize the fluctuation of acc (&gt;=20 epoch, the acc fluctuates" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement a naive training process, seems to be able to learn information from graphs. May need other tricks to stabilize the fluctuation of acc (&gt;=20 epoch, the acc fluctuates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

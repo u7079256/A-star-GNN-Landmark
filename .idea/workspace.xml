@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3005a625-0843-43fd-a7cc-7224d268f43a" name="变更" comment="implement a naive training process, seems to be able to learn information from graphs. May need other tricks to stabilize the fluctuation of acc (&gt;=20 epoch, the acc fluctuates">
+    <list default="true" id="3005a625-0843-43fd-a7cc-7224d268f43a" name="变更" comment="ADD PREPROCESSING METHOD. However, it seems that the overwriting problem could only be delayed with low lr, but it could not be solved. Still need other tricks on this problem.">
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph/100_14_0.csv" beforeDir="false" />
@@ -3208,7 +3208,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.mydataset">
+  <component name="RunManager" selected="Python.training">
     <configuration name="GAT_demo_taste" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -3235,9 +3235,6 @@
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -3320,6 +3317,9 @@
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -3387,11 +3387,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.mydataset" />
         <item itemvalue="Python.training" />
+        <item itemvalue="Python.mydataset" />
+        <item itemvalue="Python.Lower_bound_a_star_utils (1)" />
         <item itemvalue="Python.raw_data_train_test-split" />
         <item itemvalue="Python.utils (1)" />
-        <item itemvalue="Python.Lower_bound_a_star_utils (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -3417,7 +3417,8 @@
       <workItem from="1673281582401" duration="4226000" />
       <workItem from="1673313914134" duration="64000" />
       <workItem from="1673314003495" duration="210000" />
-      <workItem from="1673314233092" duration="17034000" />
+      <workItem from="1673314233092" duration="17133000" />
+      <workItem from="1673413016793" duration="19821000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1670997518477</created>
@@ -3531,7 +3532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673329015448</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="ADD PREPROCESSING METHOD. However, it seems that the overwriting problem could only be delayed with low lr, but it could not be solved. Still need other tricks on this problem.">
+      <created>1673395813458</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1673395813458</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -3563,7 +3571,8 @@
     <MESSAGE value="add self implemented dataset class, which could be used for training.&#10;Note that the transform operation has not been implemented.&#10;Only a naive implementation overall" />
     <MESSAGE value="fix potential bugs for len and get, implement processed function, it helps to prevent from re-processing" />
     <MESSAGE value="implement a naive training process, seems to be able to learn information from graphs. May need other tricks to stabilize the fluctuation of acc (&gt;=20 epoch, the acc fluctuates" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement a naive training process, seems to be able to learn information from graphs. May need other tricks to stabilize the fluctuation of acc (&gt;=20 epoch, the acc fluctuates" />
+    <MESSAGE value="ADD PREPROCESSING METHOD. However, it seems that the overwriting problem could only be delayed with low lr, but it could not be solved. Still need other tricks on this problem." />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD PREPROCESSING METHOD. However, it seems that the overwriting problem could only be delayed with low lr, but it could not be solved. Still need other tricks on this problem." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3572,11 +3581,6 @@
           <url>file://$PROJECT_DIR$/graph_generate.py</url>
           <line>73</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Lower_bound_a_star_utils.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/utils.py</url>
@@ -3588,26 +3592,33 @@
           <line>11</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/training.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mydataset.py</url>
+          <line>109</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="dataset.data.edge_stores" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/dijkstra_tools_py$utils__1_.coverage" NAME="utils (1) 覆盖结果" MODIFIED="1672832018650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Lower_bound_a_star_utils_py$mydataset.coverage" NAME="mydataset 覆盖结果" MODIFIED="1673312790090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/baseline_random_sample_py$GAT_demo_taste.coverage" NAME="GAT_demo_taste 覆盖结果" MODIFIED="1673277189468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/a_star_algo_py$utils__1_.coverage" NAME="utils (1) 覆盖结果" MODIFIED="1672789309928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/dijkstra_tools_py$baseline_random_sample.coverage" NAME="baseline_random_sample 覆盖结果" MODIFIED="1672914094183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/training_py$mydataset.coverage" NAME="mydataset 覆盖结果" MODIFIED="1673486377125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$graph_generate__1_.coverage" NAME="graph_generate (1) 覆盖结果" MODIFIED="1670562529147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Lower_bound_a_star_utils_py$baseline_random_sample.coverage" NAME="baseline_random_sample 覆盖结果" MODIFIED="1672971230466" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$trival_algo.coverage" NAME="trival_algo 覆盖结果" MODIFIED="1670906689804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/trival_algo_py$trival_algo.coverage" NAME="trival_algo 覆盖结果" MODIFIED="1670994900548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/baseline_random_sample_py$GAT_demo_taste.coverage" NAME="GAT_demo_taste 覆盖结果" MODIFIED="1673277189468" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/baseline_random_sample_py$training.coverage" NAME="training 覆盖结果" MODIFIED="1673327783100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/utils_py$a_star_algo.coverage" NAME="a_star_algo 覆盖结果" MODIFIED="1671678206214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/a_star_algo_py$utils__1_.coverage" NAME="utils (1) 覆盖结果" MODIFIED="1672789309928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/dijkstra_tools_py$baseline_random_sample.coverage" NAME="baseline_random_sample 覆盖结果" MODIFIED="1672914094183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$graph_generate.coverage" NAME="graph_generate 覆盖结果" MODIFIED="1670556891157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/training_py$training.coverage" NAME="training 覆盖结果" MODIFIED="1673416683091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

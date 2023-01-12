@@ -11,6 +11,7 @@ from graph_generate import read_graph
 from utils import feature_matrix_extraction, boundary_node_detection
 import torch_geometric.transforms as T
 
+
 class RoadNetworkDataset(Dataset):
     def __init__(self, root, raw_dir='graph', test=False, transform=None, pre_transform=None, proportion=0.5):
         """
@@ -93,7 +94,7 @@ class RoadNetworkDataset(Dataset):
             y = np.zeros(len(adj))
 
             cut_off_index = int(self.proportion * len(landmark_score))
-            #print('len', len(landmark_score),'cut',cut_off_index)
+            # print('len', len(landmark_score),'cut',cut_off_index)
             for ele in landmark_score:
                 # label = 2 indicates good landmark, 1 ~ bad landmarks, 0 ~ normal node
                 if cut_off_index >= 0:
@@ -107,8 +108,7 @@ class RoadNetworkDataset(Dataset):
                 graph = self.pre_filter(graph)
 
             if self.pre_transform is not None:
-                for ele in self.pre_transform:
-                    graph = ele(graph)
+                    graph = self.pre_transform(graph)
             # print('the file', file)
             torch.save(graph,
                        os.path.join(self.processed_dir,
@@ -121,7 +121,7 @@ class RoadNetworkDataset(Dataset):
         """ - Equivalent to __getitem__ in pytorch
         - Is not needed for PyG's InMemoryDataset
         """
-        #print(os.path.join(self.processed_dir,
+        # print(os.path.join(self.processed_dir,
         #                   f'data_{idx}.pt'))
         data = torch.load(os.path.join(self.processed_dir,
                                        f'data_{idx}.pt'))
@@ -129,6 +129,15 @@ class RoadNetworkDataset(Dataset):
 
 
 if __name__ == '__main__':
-    dataset = RoadNetworkDataset(root="data/",raw_dir='testing',pre_transform=[T.OneHotDegree(max_degree=1000),T.NormalizeFeatures()])
+    #dataset = RoadNetworkDataset(root="data/", raw_dir='testing',
+    #                             pre_transform=T.OneHotDegree(max_degree=1000,cat=False))
     sample = torch.load(os.path.join('testing//processed',
-                                       f'data_1.pt'))
+                                     f'data_0.pt'))
+    print(sample.x[0][27])
+    print(len(sample.x[0]))
+    sample2 = torch.load(os.path.join('testing//processed',
+                                     f'data_2.pt'))
+    print(sample.x == sample2.x)
+    b = sample.x == sample2.x
+    b = b.numpy()
+    print((b==1).sum())

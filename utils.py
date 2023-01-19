@@ -80,7 +80,7 @@ def feature_matrix_extraction(adj_matrix, boundary_nodes, gt=False):
     remaining nodes
     """
     nodes_list = list(np.arange(len(adj_matrix)))
-    potential_pairs = list(set(nodes_list) - set(boundary_nodes))
+    potential_pairs = nodes_list#list(set(nodes_list) - set(boundary_nodes))
     distance_dict = {}
     for edge_node in boundary_nodes:
         distance_dict[edge_node] = dijkstra_tools.dijkstra_one_to_all(adj_matrix, edge_node)
